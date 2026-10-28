@@ -1,0 +1,93 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>أبطال الأمان الرقمي</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(#b9e9ff,#fff0cf);color:#17365d;text-align:center;padding:12px}header{max-width:1100px;margin:0 auto 12px;background:#fff0fa;border:4px solid #f06ca8;border-radius:25px;padding:14px;font-size:clamp(23px,4vw,40px);font-weight:bold;box-shadow:0 4px #d74c8b} .instruction{background:#fff7e7;border:3px solid #f4a340;border-radius:18px;padding:12px;font-size:clamp(18px,3vw,28px);font-weight:bold;margin:0 auto 14px;max-width:850px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;max-width:1100px;margin:auto}.card{background:white;border:3px solid #67b5e8;border-radius:18px;padding:10px 5px;min-height:135px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;cursor:grab;touch-action:manipulation;user-select:none;font-weight:bold;font-size:clamp(13px,2vw,17px)}.emoji{font-size:clamp(35px,6vw,58px)}.card:active{cursor:grabbing;transform:scale(.98)}.card.selected{outline:5px solid #ffbd35;box-shadow:0 0 0 7px #fff1b8;transform:scale(1.02)}.zones{display:grid;grid-template-columns:1fr 1fr;gap:15px;max-width:900px;margin:20px auto}.zone{border-radius:30px;padding:12px;border:5px solid;min-height:190px}.safe{background:#dff8d8;border-color:#28a844}.unsafe{background:#ffe1e1;border-color:#f04444}.zone h2{margin:0 0 10px;font-size:clamp(25px,4vw,38px)}.droparea{border:3px dashed currentColor;border-radius:18px;min-height:100px;padding:8px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px}.droparea .card{min-height:70px;flex:1 1 110px;max-width:170px;font-size:13px;padding:6px}.feedback{max-width:850px;margin:12px auto;padding:13px;border-radius:20px;background:#fff;border:3px solid #ffca54;font-size:clamp(18px,3vw,25px);font-weight:bold;min-height:55px}.bottom{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:12px}.btn{border:0;border-radius:15px;padding:12px 20px;font-size:18px;font-weight:bold;background:#6639b7;color:white;cursor:pointer}.btn.green{background:#159447}.score{font-size:18px;font-weight:bold;margin:8px}.home{position:fixed;top:8px;left:8px;border:0;border-radius:50%;width:48px;height:48px;background:#fff;color:#1875bc;font-size:25px;cursor:pointer}@media(max-width:600px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.card{min-height:115px}.zones{gap:7px}.zone{padding:7px;min-height:170px}.droparea{min-height:100px}.droparea .card{min-width:80px}}
+.progress-wrap{max-width:850px;height:16px;border-radius:20px;background:#fff;border:2px solid #7abbe5;margin:10px auto;overflow:hidden}.progress{height:100%;width:0;background:linear-gradient(90deg,#39c96b,#b4ef55);transition:width .35s ease}
+.card{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}.card.correct{background:#edfff0;animation:pop .35s ease}.card.wrong{background:#fff0f0;animation:shake .3s ease}.zone{transition:transform .2s ease,box-shadow .2s ease}.zone:active{transform:scale(.99)}.feedback{transition:background .25s ease;box-shadow:0 4px 0 #f0d58a}
+@keyframes pop{50%{transform:scale(1.07)}}@keyframes shake{25%{transform:translateX(5px)}75%{transform:translateX(-5px)}}
+#confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:10}.confetti-piece{position:absolute;top:-20px;width:10px;height:16px;animation:fall 1.8s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.1}}
+
+</style></head><body>
+<button class="home" onclick="resetGame()" aria-label="إعادة">⌂</button><header>⭐ المهارات الحياتية الرقمية الآمنة ⭐</header><div class="instruction">اسحبي البطاقة إلى المكان المناسب 👆<br><small>على الجوال: اضغطي على البطاقة ثم اضغطي على خانة «آمن» أو «غير آمن»</small></div>
+<div class="cards" id="cards">
+<div class="card" draggable="true" data-safe="true" data-id="1"><span class="emoji">🔒</span><span>استخدام كلمة مرور قوية</span></div>
+<div class="card" draggable="true" data-safe="false" data-id="2"><span class="emoji">🔗</span><span>الضغط على روابط مجهولة</span></div>
+<div class="card" draggable="true" data-safe="true" data-id="3"><span class="emoji">🎬</span><span>مشاهدة محتوى مناسب</span></div>
+<div class="card" draggable="true" data-safe="false" data-id="4"><span class="emoji">📩</span><span>فتح رسائل من أشخاص مجهولين</span></div>
+<div class="card" draggable="true" data-safe="true" data-id="5"><span class="emoji">👩‍👧</span><span>إخبار أمي إذا أزعجني أحد</span></div>
+<div class="card" draggable="true" data-safe="false" data-id="6"><span class="emoji">🪪</span><span>مشاركة معلوماتي الشخصية</span></div>
+<div class="card" draggable="true" data-safe="true" data-id="7"><span class="emoji">🎮</span><span>اللعب في وقت مناسب</span></div>
+<div class="card" draggable="true" data-safe="false" data-id="8"><span class="emoji">📱</span><span>استخدام الأجهزة وقتًا طويلًا</span></div>
+</div>
+<div class="zones"><section class="zone safe" data-zone="true"><h2>✅ آمن</h2><div class="droparea" id="safeZone"></div></section><section class="zone unsafe" data-zone="false"><h2>❌ غير آمن</h2><div class="droparea" id="unsafeZone"></div></section></div>
+<div class="progress-wrap" aria-label="تقدم اللعبة"><div class="progress" id="progress"></div></div><div class="feedback" id="feedback" aria-live="polite">🌟 هيا يا أبطال! اسحبي البطاقة أو اضغطي عليها ثم اختاري التصنيف.</div><div class="score" id="score">⭐ النجوم: 0 من 8</div><div class="score" id="progressText">تم تصنيف 0 من 8 بطاقات</div><div id="confetti" aria-hidden="true"></div><div style="margin:14px auto 4px;font-weight:bold;color:#17365d;font-size:18px">إعداد المعلمتين: الجوهرة الحارثي وعبير الجعيد</div><div class="bottom"><button class="btn green" onclick="checkDone()">🏆 عرض النتيجة</button><button class="btn" onclick="resetGame()">🔄 إعادة اللعبة</button></div>
+<script>
+let selected=null,stars=0;
+const feedback=document.getElementById('feedback'),scoreEl=document.getElementById('score');
+const progress=document.getElementById('progress'),progressText=document.getElementById('progressText');
+const totalCards=8;
+function updateScore(){
+ const placed=document.querySelectorAll('.droparea .card').length;
+ stars=document.querySelectorAll('.droparea .card.correct').length;
+ scoreEl.textContent=`⭐ النجوم: ${stars} من ${totalCards}`;
+ progress.style.width=`${placed/totalCards*100}%`;
+ progressText.textContent=`تم تصنيف ${placed} من ${totalCards} بطاقات`;
+}
+function celebrate(){
+ const host=document.getElementById('confetti');
+ for(let i=0;i<55;i++){
+  const piece=document.createElement('i');piece.className='confetti-piece';
+  piece.style.left=Math.random()*100+'%';
+  piece.style.background=['#ff5d8f','#ffc83d','#43c77a','#4db5ff','#a77bff'][i%5];
+  piece.style.animationDelay=Math.random()*.6+'s';piece.style.transform=`rotate(${Math.random()*360}deg)`;
+  host.appendChild(piece);setTimeout(()=>piece.remove(),2500);
+ }
+}
+function place(card,zone){
+ if(!card||!zone)return;
+ const right=card.dataset.safe===zone.dataset.zone;
+ zone.querySelector('.droparea').appendChild(card);
+ card.classList.remove('selected','correct','wrong');
+ card.classList.add(right?'correct':'wrong');
+ card.style.borderColor=right?'#22984b':'#e64a4a';
+ if(right){
+  feedback.textContent='🎉 أحسنت! إجابة صحيحة، كسبت نجمة! ⭐';
+  feedback.style.background='#e3ffe7';
+  celebrate();
+ }else{
+  feedback.textContent='🌷 ليست الإجابة المناسبة، جرّب نقل البطاقة إلى التصنيف الآخر.';
+  feedback.style.background='#fff5ce';
+ }
+ updateScore();selected=null;
+}
+document.querySelectorAll('.card').forEach(card=>{
+ card.addEventListener('dragstart',e=>{selected=card;e.dataTransfer.setData('text/plain',card.dataset.id)});
+ card.addEventListener('click',()=>{
+  document.querySelectorAll('.card').forEach(c=>c.classList.remove('selected'));
+  selected=card;card.classList.add('selected');
+  feedback.textContent='👍 اخترت البطاقة! الآن اضغط على خانة «آمن» أو «غير آمن».';
+  feedback.style.background='#fff';
+ });
+});
+document.querySelectorAll('.zone').forEach(zone=>{
+ zone.addEventListener('dragover',e=>e.preventDefault());
+ zone.addEventListener('drop',e=>{
+  e.preventDefault();const id=e.dataTransfer.getData('text/plain');
+  const card=document.querySelector('.card[data-id="'+id+'"]')||selected;place(card,zone);
+ });
+ zone.addEventListener('click',()=>{if(selected)place(selected,zone)});
+});
+function checkDone(){
+ const placed=document.querySelectorAll('.droparea .card').length;
+ if(placed<totalCards)feedback.textContent=`👏 صنّفت ${placed} من ${totalCards} بطاقات. أكمل البطاقات المتبقية!`;
+ else if(stars===totalCards){feedback.textContent='🏆 تهانينا! أصبحت بطل الأمان الرقمي! حصلت على جميع النجوم!';celebrate();}
+ else feedback.textContent=`🌟 انتهت اللعبة! حصلت على ${stars} من ${totalCards} نجوم. حاول تصحيح البطاقات الحمراء.`;
+}
+function resetGame(){
+ const cards=document.getElementById('cards');
+ document.querySelectorAll('.droparea .card').forEach(c=>{c.classList.remove('correct','wrong');c.style.borderColor='#67b5e8';cards.appendChild(c)});
+ selected=null;document.querySelectorAll('.card').forEach(c=>c.classList.remove('selected'));
+ feedback.textContent='🌟 هيا يا أبطال! اسحب البطاقة أو اضغط عليها ثم اختر التصنيف.';
+ feedback.style.background='#fff';document.getElementById('confetti').replaceChildren();updateScore();
+}
+updateScore();
+</script></body></html>
